@@ -97,8 +97,4 @@ Edit `configs/config.yaml` to set your API keys, topic thresholds, and output se
 
 ---
 
-## License
-
-This project is released under the MIT License. See [LICENSE](LICENSE) for details.
-
 

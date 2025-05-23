@@ -1,86 +1,104 @@
 ## AVGen
-**AI Video Generation Tool **
+**AI Video Generation Tool**
 
-A Python application that automatically scrapes trending topics from news and social media, generates a short script, and builds a 30–60 second video with text overlays and images.
-
----
-
-## 🚀 Features
-
-1. **Ingestion**: Fetch trending headlines & hashtags via NewsAPI, RSS feeds, Twitter/X, or Reddit.
-2. **Ranking**: Score and deduplicate topics by recency & engagement.
-3. **Script Generation**: Produce a concise narration script using an AI prompt wrapper.
-4. **Media Sourcing**: Retrieve relevant images & stock clips (e.g., Unsplash API).
-5. **Video Rendering**: Assemble clips, images, and text overlays into a final video (MoviePy).
-6. **Configurable**: All keys, thresholds, and settings in `configs/default.yaml`.
+A Python-based application that automatically generates 30–60 second videos by scraping trending news and social media topics, creating a script, and composing video segments with text overlays and images.
 
 ---
 
-## 📂 Directory Structure
+## Features
 
-```
+* **Trending Topic Ingestion**
+  • Scrape news headlines (RSS/NewsAPI) and social media hashtags (Twitter/Reddit).
+  • Rank and deduplicate topics by recency and popularity.
+
+* **Automated Script Generation**
+  • AI-driven script writer producing concise narratives for each topic.
+
+* **Media Asset Sourcing**
+  • Fetch relevant images and short clips via public APIs (e.g., Unsplash).
+
+* **Video Rendering**
+  • Assemble text overlays, images, and clips into polished 30–60 second videos using MoviePy.
+
+* **Configurable & Modular**
+  • YAML-based configuration.
+  • Modular source structure for easy extension.
+
+---
+
+## Folder Structure
+
+```plaintext
 ai_video_gen/
-├── configs/            # API keys & settings
-├── data/               # raw & processed data dumps
-├── src/                # source modules
-│   ├── ingestion/      # topic scraping & ranking
-│   ├── scripting/      # script generation
-│   ├── media/          # image/video asset fetcher
-│   ├── render/         # video builder pipeline
-│   ├── utils/          # logging & helpers
-│   └── main.py         # orchestrator entry point
-├── notebooks/          # prototyping work
-├── requirements.txt    # dependencies
-└── README.md
+├── configs/           # Configuration files (API keys, thresholds)
+│   └── config.yaml
+├── data/
+│   ├── raw/           # Raw JSON/HTML dumps
+│   └── processed/     # Cleaned topic data
+├── src/               # Application modules
+│   ├── ingestion/     # Trending-topic scrapers & ranker
+│   ├── scripting/     # Script generator
+│   ├── media/         # Asset fetcher
+│   ├── render/        # Video builder
+│   ├── utils/         # Helpers & logger
+│   └── main.py        # Entry point
+├── output/
+│   ├── videos/        # Generated videos
+│   └── scripts/       # Generated scripts
+├── requirements.txt   # Python dependencies
+├── .env.example       # Environment variables template
+└── README.md          # Project overview
 ```
 
 ---
 
-## ⚙️ Installation
+## Installation
 
-1. Clone this repo:
+1. Clone the repository:
 
    ```bash
    git clone https://github.com/your-org/ai_video_gen.git
    cd ai_video_gen
    ```
-2. Create & activate a virtualenv:
+2. Create and activate a virtual environment:
 
    ```bash
-   python3 -m venv venv && source venv/bin/activate
+   python3 -m venv venv
+   source venv/bin/activate
    ```
 3. Install dependencies:
 
    ```bash
    pip install -r requirements.txt
    ```
-
----
-
-## ▶️ Usage
-
-1. Populate `configs/default.yaml` with your API keys.
-2. Run the pipeline:
+4. Copy and fill in environment variables:
 
    ```bash
-   python src/main.py --step ingestion  # pick trending topics
-   python src/main.py --step all        # full end-to-end run
+   cp .env.example .env
    ```
-3. Generated videos appear in `output/videos/`.
 
 ---
 
-## 📄 Deliverables
+## Usage
 
-* **Source Code**: All Python modules under `src/`.
-* **Generated Videos**: 30–60s clips in `output/videos/`.
-* **Report**: Detailed steps & design rationale in `docs/report.pdf`.
+Run the main pipeline to fetch topics, generate scripts, and render videos:
+
+```bash
+python src/main.py --config configs/config.yaml
+```
+
+Outputs will appear under `output/scripts/` and `output/videos/`.
+
+---
+
+## Configuration
+
+Edit `configs/config.yaml` to set your API keys, topic thresholds, and output settings.
 
 ---
 
-## 🤝 Contributing
+## License
 
-Contributions welcome! Please open an issue or submit a pull request.
+This project is released under the MIT License. See [LICENSE](LICENSE) for details.
 
----
 
